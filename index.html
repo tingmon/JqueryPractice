@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta charset="UTF-8">
+        <title>jQuery Mobile Template</title>
+        <!--jQuery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jQuery Mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jQuery Mobile style sheet-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+        <!--jquery validation lib-->
+        <script src="js/lib/jquery.validate.js"></script>
+        <!--project script-->
+        <script  src="js/TJdatabse.js"></script>
+        <script  src="js/TJfacade.js"></script>
+        <script  src="js/TJFeedbackDAL.js"></script>
+        <script  src="js/TJglobal.js"></script>
+        <script  src="js/TJutil.js"></script>
+        <!--my custom css-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/TJmystyle.css">
+    </head>
+    <body>
+        <!--Hompage-->
+        <div id="tjHomePage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>TJ Feedback</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#tjHomePage" data-icon="home" class="ui-btn-active ui-state-persist">Home</a>
+                        </li>
+                        <li>
+                            <a href="#tjAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#tjViewFeedbackPage" data-icon="grid">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#tjSettingsPage" data-icon="gear">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <h1>Taekmin Jeong's Feedback App</h1>
+                <div>
+                    <p>
+                        Welcom to the Taekmin Jeong's Feedback app. Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit. Aspernatur commodi cupiditate, dolores dolorum eligendi ipsam maxime
+                        nam tenetur. Adipisci aperiam commodi consequuntur dolorem exercitationem minima modi
+                        officia officiis repellat repellendus!
+                    </p>
+                </div>
+                <div id="tjImageContainer">
+                    <img id="tjImage" alt="" src="img/tj-image.png">
+                </div>
+                <div>
+                    <span>Please Feel free to contact me if you have any suggestions</span>
+                </div>
+                <div>
+                    <a href="tel:519-748-5220"  id="tjCall" data-role="button" data-icon="plus">Call: 519-748-5220</a>
+                    <a href="mailto:Tjeong2320@conestogac.on.ca" id="tjEmail" data-role="button" data-icon="plus">Tjeong2320conestogac.on.ca</a>
+                    <span>Website:</span>
+                    <a href="https://www.conestogac.on.ca/" target="_blank" id="tjWebsite" data-role="button" data-icon="plus">Conestoga College</a>
+                </div>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h3>&copy; 2021 Taekmin Jeong</h3>
+            </footer>
+        </div>
+
+        <!--Add Feedback-->
+        <div id="tjAddFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Add a Feedback</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#tjHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#tjAddFeedbackPage" data-icon="plus" class="ui-btn-active ui-state-persist">Add</a>
+                        </li>
+                        <li>
+                            <a href="#tjViewFeedbackPage" data-icon="grid">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#tjSettingsPage" data-icon="gear">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <form action="index.html" id="tjFrmAddReview">
+                    <label for="tjTxtBusinessName">Business Name:</label>
+                    <input type="text" id="tjTxtBusinessName" name="tjTxtBusinessName" data-clear-btn="true">
+
+                    <label for="tjType">Type:</label>
+                    <select name="tjType" id="tjType">
+                        <option value="3">Other</option>
+                        <option value="2">Asian</option>
+                        <option value="1">Canadian</option>
+                    </select>
+
+                    <label for="tjTxtEmail">Reviewer Email:</label>
+                    <input type="text" id="tjTxtEmail" name="tjTxtEmail" data-clear-btn="true">
+
+                    <label for="tjTxtComments">Reviewer Comments:</label>
+                    <textarea id="tjTxtComments" name="tjTxtComments" data-clear-btn="true"></textarea>
+
+                    <label for="tjTxtReviewDate">Review Date:</label>
+                    <input type="date" id="tjTxtReviewDate" name="tjTxtReviewDate" data-clear-btn="true">
+
+                    <input type="checkbox" id="tjAddRating" name="tjAddRating">
+                    <label for="tjAddRating">Do you want to add your rating?</label><br>
+
+                    <div id="tjFrmAddOptional" style="display:none">
+                        <label for="tjFoodQuality">Food Quality(0-5):</label>
+                        <input value="0" type="number" id="tjFoodQuality" name="tjFoodQuality" data-clear-btn="true">
+
+                        <label for="tjService">Service(0-5):</label>
+                        <input value="0" type="number" id="tjService" name="tjService" data-clear-btn="true">
+
+                        <label for="tjValue">Value(0-5):</label>
+                        <input value="0" type="number" id="tjValue" name="tjValue" data-clear-btn="true">
+
+                        <label for="tjOverall">Overall Rating(calculated):</label>
+                        <input disabled readonly type="text" id="tjOverall" name="tjOverall" data-clear-btn="true">
+                    </div>
+
+
+
+                    <button type="button" id="tjBtnAddReview" data-role="button" data-inline="true" class="ui-btn-active">Save</button>
+                </form>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h3>&copy; 2021 Taekmin Jeong</h3>
+            </footer>
+        </div>
+
+        <!--Feedback Page-->
+        <div id="tjViewFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>List of Reviews</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#tjHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#tjAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#tjViewFeedbackPage" data-icon="grid" class="ui-btn-active ui-state-persist">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#tjSettingsPage" data-icon="gear">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section>
+                <ul id="tjListOfReviews" data-role="listview" data-inset="true">
+                    <li class="review__element"><a href="#tjEditFeedbackPage" id="tjReviewFirst" data-transition="slide">
+                        <div>
+                            <h6>Business Name: My Poutine Shop</h6>
+                            <p>Reviewer Email: tjeong@coldpoutine.com</p>
+                            <p>Comments: Your poutine is cold.</p>
+                            <p>Overall Rating: 100%</p>
+                        </div>
+                    </a></li>
+                    <li class="review__element"><a href="#tjEditFeedbackPage" id="tjReviewSecond" data-transition="slide">
+                        <div>
+                            <h6>Business Name: My Donut Shop</h6>
+                            <p>Reviewer Email: tjeong@donutheaven.com</p>
+                            <p>Comments: I'm in heaven.</p>
+                            <p>Overall Rating: 90%</p>
+                        </div>
+                    </a></li>
+                </ul>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h3>&copy; 2021 Taekmin Jeong</h3>
+            </footer>
+
+        </div>
+
+        <!--Edit Feedback-->
+        <div id="tjEditFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Modify Feedback</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#tjHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#tjAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#tjViewFeedbackPage" data-icon="grid" class="ui-btn-active ui-state-persist">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#tjSettingsPage" data-icon="gear">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <form action="index.html" id="tjFrmEditReview">
+                    <label for="tjTxtBusinessNameEdit">Business Name:</label>
+                    <input type="text" id="tjTxtBusinessNameEdit" name="tjTxtBusinessNameEdit" data-clear-btn="true" value="My Poutine Shop">
+
+                    <label for="tjTypeEdit">Type:</label>
+                    <select name="tjTypeEdit" id="tjTypeEdit">
+                        <option value="3">Other</option>
+                        <option value="2">Asian</option>
+                        <option value="1">Canadian</option>
+                    </select>
+
+                    <label for="tjTxtEmailEdit">Reviewer Email:</label>
+                    <input type="text" id="tjTxtEmailEdit" name="tjTxtEmailEdit" data-clear-btn="true" value="tjeong2320@coldpoutine.com">
+
+                    <label for="tjTxtCommentsEdit">Reviewer Comments:</label>
+                    <textarea id="tjTxtCommentsEdit" name="tjTxtCommentsEdit" data-clear-btn="true">Your poutine is cold.</textarea>
+
+                    <label for="tjTxtReviewDateEdit">Review Date:</label>
+                    <input type="date" id="tjTxtReviewDateEdit" name="tjTxtReviewDateEdit" data-clear-btn="true">
+
+                    <input type="checkbox" id="tjAddRatingEdit" name="tjAddRatingEdit">
+                    <label for="tjAddRatingEdit">Do you want to add your rating?</label><br>
+
+                    <div id="tjFrmEditOptional" style="display:none">
+                        <label for="tjFoodQualityEdit">Food Quality(0-5):</label>
+                        <input value="0" type="number" id="tjFoodQualityEdit" name="tjFoodQualityEdit" data-clear-btn="true">
+
+                        <label for="tjServiceEdit">Service(0-5):</label>
+                        <input value="0" type="number" id="tjServiceEdit" name="tjServiceEdit" data-clear-btn="true">
+
+                        <label for="tjValueEdit">Value(0-5):</label>
+                        <input value="0" type="number" id="tjValueEdit" name="tjValueEdit" data-clear-btn="true">
+
+                        <label for="tjOverallEdit">Overall Rating(calculated):</label>
+                        <input value="0" disabled readonly type="text" id="tjOverallEdit" name="tjOverallEdit" data-clear-btn="true">
+                    </div>
+
+
+                    <button type="button" id="tjBtnCancelReview" data-role="button" data-inline="true">Cancel</button>
+                    <button type="button" id="tjBtnDeleteReview" data-role="button" data-inline="true" data-theme="b">Delete</button>
+                    <button type="button" id="tjBtnUpdateReview" data-role="button" data-inline="true" class="ui-btn-active">Update</button>
+                </form>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h3>&copy; 2021 Taekmin Jeong</h3>
+            </footer>
+        </div>
+
+        <!--Settings Page-->
+        <div id="tjSettingsPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Settings</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#tjHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#tjAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#tjViewFeedbackPage" data-icon="grid">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#tjSettingsPage" data-icon="gear" class="ui-btn-active ui-state-persist">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <section data-role="content">
+                    <form action="index.html" id="tjFrmDefaults">
+
+                        <label for="tjTxtEmailDefaults">Reviewer Email:</label>
+                        <input value="tjeong2320@conestogac.on.ca" type="email" id="tjTxtEmailDefaults" name="tjTxtEmailDefaults" data-clear-btn="true">
+
+                        <button type="button" id="tjBtnSaveDefaults" data-role="button" class="ui-btn-active">Save Defaults</button>
+                        <button type="button" id="tjBtnClearDatabase" data-role="button" data-theme="b">Clear Database</button>
+                    </form>
+                </section>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h3>&copy; 2021 Taekmin Jeong</h3>
+            </footer>
+        </div>
+    </body>
+</html>

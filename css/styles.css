@@ -1,0 +1,31 @@
+#tjImageContainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#tjImage{
+    width: 40%;
+    padding: 30px 0px;
+}
+a{
+    display:block;
+}
+input{
+    margin-bottom:50px;
+}
+#tjListOfReviews{
+    margin-top:30px;
+    border:none;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+}
+#tjListOfReviews li{
+    border: 1px solid #c7c7c7;
+    margin: 5px;
+    width: 80%;
+}
+#tjBtnCancelReview{
+    background-color:yellow;
+}
